@@ -1,0 +1,56 @@
+<div class="container animation">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>{{title}}</h1>
+        </div>
+    </div>
+  </div>
+  <br>
+  <div class="container">    
+      <!-- Validando total carrito-->
+      @if(total ===0){
+        <!-- Mensaje carrito vacio -->
+        <div class="container animation">
+          <div class="row">
+              <div class="col-12 text-center">
+                  <h3>Carrito Vacio</h3>
+              </div>
+          </div>
+        </div>
+      }
+      @else{
+        <!-- Total del carrito -->
+        <div class="row">
+          <div class="col-12 text-center">
+              <h3>Total: {{total}}</h3>
+          </div>
+        </div>
+        <br>
+        <!-- Botón para vaciar el carrito -->
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button class="btn btn-warning" (click)="clearCart()">Vaciar Carrito</button>
+          </div>
+        </div>
+        <br>
+        <!-- recorriendo items del carrito -->
+        <div class="row">
+          @for(item of cartItems; track item.itemId)
+          {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card animation">
+                <img [src]="item.img" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.nombre }}</h5>
+                  <p class="card-text">Descripción: {{ item.descripcion }}</p>
+                  <p class="card-text">Precio Unitario: {{ item.precio }}</p>
+                  <p class="card-text">Stock Disponible: {{ item.stock }}</p>
+                  <p class="card-text">Subtotal: {{ item.precio }}</p>
+                  <button class="btn btn-danger" (click)="removeProduct(item.itemId)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+  </div>  
