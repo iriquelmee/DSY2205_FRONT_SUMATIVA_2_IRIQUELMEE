@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="accordion" id="accordionExample">
+
+      @for (item of accordionItems; track item.id) {
+          <div class="accordion-item">
+              <h2 class="accordion-header" [id]="'heading' + item.id">
+                <button class="accordion-button acordion-background-orange" type="button" (click)="toggleAccordion(item)" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse' + item.id" [attr.aria-expanded]="item.show" [attr.aria-controls]="'collapse' + item.id">
+                  {{ item.que }}
+                </button>
+              </h2>
+              <div [id]="'collapse' + item.id" class="accordion-collapse collapse" [class]="{'show': item.show}" [attr.aria-labelledby]="'heading' + item.id" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>{{ item.res }}</strong>
+                </div>
+              </div>
+        </div>
+        }
+    </div>
+</div>
