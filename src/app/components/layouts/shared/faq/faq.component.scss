@@ -1,0 +1,17 @@
+  .animation {
+    animation: slideFromBottom 0.5s ease-in-out;
+  }
+
+  .custom-title{
+    text-align: center;
+    margin-top: 10px;
+}
+  
+  @keyframes slideFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
