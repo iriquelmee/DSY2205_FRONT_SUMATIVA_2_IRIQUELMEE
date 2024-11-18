@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { productos } from '../../../../data';
+import { CartService } from '../../../../services/cart.service';
+import { CartItem } from '../../../../interfaces/cart-item.model';
 
 @Component({
   selector: 'app-product',
@@ -9,6 +11,15 @@ import { productos } from '../../../../data';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
+  
+  cartItems: CartItem[] = [];
+
+  constructor(private cartService: CartService) {}
+
+  addToCart(product: any){
+    this.cartService.addItem(product);
+    alert('¡Producto añadido al carrito con éxito!');
+  }
 
   productTitle : string = "Productos Mas Vendidos";
 

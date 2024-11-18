@@ -16,6 +16,11 @@ transform: translateY(-5px);
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.custom-title{
+    text-align: center;
+    margin-top: 10px;
+}
+
 @keyframes slideFromBottom {
 from {
 transform: translateY(100%);

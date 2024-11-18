@@ -1,3 +1,6 @@
+<div class="container custom-title">
+    <span><h2>{{productTitle}}</h2></span>
+</div>
 <div class="container">
     <div class="row">
         @for(product of dataProducts; track product.id){
@@ -8,7 +11,7 @@
                         <h5 class="card-title">{{ product.nombre }}</h5>
                         <p class="card-text">{{ product.categoria }}</p>
                         <p class="card-text">Precio: {{ product.precio }}</p>
-                        <button class="btn btn-primary">Añadir al carrito</button>
+                        <button class="btn btn-primary" (click)="addToCart(product)" >Añadir al carrito</button>
                     </div>
                 </div>
             </div>
