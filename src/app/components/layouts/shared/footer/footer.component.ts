@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
 
-  footerTitle:string = "DSY2205 Store"
+  footerTitle:string = "DSY2205 Store - By Ignacio Riquelme."
   footerItems : any[]  | undefined;
 
   ngOnInit()

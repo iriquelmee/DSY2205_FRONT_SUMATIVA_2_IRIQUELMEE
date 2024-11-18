@@ -3,6 +3,8 @@ export const nav = [
   { name: 'Productos', href: '/productos' },
   { name: 'Registrate', href: '/register' },
   { name: 'Login', href: '/login' },
+  { name: 'Faq', href: '/faq' },
+  { name: 'Carrito', href: '/cart'},
 ];
 
 export const productos = [
@@ -87,3 +89,25 @@ export const productos = [
     img: 'assets/img/speaker-2.png'
   },
 ];
+
+export const accordion = {
+  title: 'Preguntas frecuentes',
+  subtitle: 'Todo lo que necesitas saber sobre DSY2205 Store',
+  faqs: [
+    {
+      id: 0,
+      que: "¿Cuáles son los medios de pago aceptados?",
+      res: "De momento solo contamos con realizacion de transferencia electronica, estamos tarbajando para ofrecerte la mejores opciones de pago, pronto te avisaremos.",
+    },
+    {
+      id: 1,
+      que: "¿Qué requisitos necesito para comprar en DSY2205 Store?",
+      res: "Solo necesitas un computador con acceso a internet y un navegador web actualizado.",
+    },
+    {
+      id: 2,
+      que: "¿Cómo es el cobro?",
+      res: "Una vez hagas el pedido un agente te contactara y te enviara los datos para realizar el pago.",
+    },
+  ],
+};
