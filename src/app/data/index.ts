@@ -1,8 +1,8 @@
 export const nav = [
   { name: 'Home', href: '/home' },
-  { name: 'Login', href: '/login' },
   { name: 'Productos', href: '/productos' },
   { name: 'Registrate', href: '/register' },
+  { name: 'Login', href: '/login' },
 ];
 
 export const productos = [
