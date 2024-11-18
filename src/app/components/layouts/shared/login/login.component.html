@@ -1,3 +1,41 @@
-<div class="container custom-title">
-    <span><h2>{{loginTitle}}</h2></span>
-</div>
+<div class="container animation">  
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <h1>{{ loginTitle  }}</h1>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="card-body">
+              <form  [formGroup]="loginForm">
+    
+                <div class="mb-3">
+                  <label for="email" class="form-label">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="email" formControlName="email">
+                  @if (isFieldInvalid('email')) {
+                    <div class="text-danger">Introduce un correo electrónico válido.</div>
+                  }
+                </div>
+
+    
+                <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="password" formControlName="password">
+                  @if (isFieldInvalid('password')) {
+                    <div class="text-danger">La contraseña debe tener al menos 6 caracteres.</div>
+                  }
+                </div>
+    
+                <button type="submit" class="btn btn-primary" (click)="submitForm()" [disabled]="loginForm.invalid">Registrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
