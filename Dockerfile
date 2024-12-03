@@ -1,25 +1,22 @@
-FROM node:18.17.1 AS dev-deps
+FROM node:22 AS build
 
 WORKDIR /app
 
-COPY package.json package.json
+COPY package.json package-lock.json ./
 
 RUN npm install
 
-FROM node:18.17.1 AS builder
-
-WORKDIR /app
-
-COPY --from=dev-devps  /app/node_modules ./node_modules
-
 COPY . .
 
-RUN npm run build
+RUN npm run build --prod
 
-FROM nginx:1.23.3 as prod
+FROM nginx:stable-alpine
+
+COPY --from=build /app/dist/dsy2205-store/browser /usr/share/nginx/html
+
+# Sobreescribir index.html default de nginx
+COPY --from=build /app/dist/dsy2205-store/browser/index.csr.html /usr/share/nginx/html/index.html
 
 EXPOSE 80
 
-COPY --from=builder /app/dist/app-web/browser/ /usr/share/nginx/html
-
-CMD [ "nginx", "-g", "deamon off;" ]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
