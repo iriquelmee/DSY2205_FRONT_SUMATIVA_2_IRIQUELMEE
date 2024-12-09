@@ -1,10 +1,10 @@
 export const nav = [
-  { name: 'Home', href: '/home' },
-  { name: 'Productos', href: '/productos' },
-  { name: 'Registrate', href: '/register' },
-  { name: 'Login', href: '/login' },
-  { name: 'Faq', href: '/faq' },
-  { name: 'Carrito', href: '/cart'},
+  { name: 'Home', href: 'home' },
+  { name: 'Productos', href: 'productos' },
+  { name: 'Registrate', href: 'register' },
+  { name: 'Login', href: 'login' },
+  { name: 'Faq', href: 'faq' },
+  { name: 'Carrito', href: 'cart'},
 ];
 
 export const productos = [
