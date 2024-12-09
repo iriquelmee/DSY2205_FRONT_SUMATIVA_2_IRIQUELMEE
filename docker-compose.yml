@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend1:
+    image: iriquelmeee/backenduserstoredsy2205
+    container_name: backenduserstoredsy2205
+    ports:
+      - "8080:8080"  # Exposing backend1 on port 8080
+    networks:
+      - dsy2205_network
+
+  backend2:
+    image: iriquelmeee/backendproductstoredsy2205
+    container_name: backendproductstoredsy2205
+    ports:
+      - "8081:8081"  # Exposing backend2 on port 8081
+    networks:
+      - dsy2205_network
+
+  frontend:
+    image: iriquelmeee/frontstoredsy2205
+    container_name: frontstoredsy2205
+    ports:
+      - "80:80"  # Exposing frontend on port 80
+    networks:
+      - dsy2205_network
+    environment:
+      - API_URL_USERS=http://backenduserstoredsy2205:8080/api  # Pointing to backend1 (corrected the container name)
+      - API_URL_PRODUCT=http://backendproductstoredsy2205:8081/api  # Pointing to backend2 (corrected the container name)
+    depends_on:
+      - backend1
+      - backend2
+
+networks:
+  dsy2205_network:
+    driver: bridge
