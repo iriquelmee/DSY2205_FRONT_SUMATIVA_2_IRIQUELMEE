@@ -8,7 +8,8 @@ import { environment } from '../environments/environment';
 })
 export class RegisterService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrlUsers = environment.apiUrlUsers + '/Users';  // Uses environment variable for users API endpoint
+  private apiUrlProduct = environment.apiUrlProduct + '/Products';
   private username = environment.basicAuth.username;
   private password = environment.basicAuth.password;
 
@@ -21,10 +22,13 @@ export class RegisterService {
     
     const headers = new HttpHeaders({
       'Authorization': basicAuth,
-      'Content-Type': 'application/json'
-    });
-
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Type, Accept'
+    });    
     
-    return this.http.post(this.apiUrl, registerData, { headers });
+    return this.http.post(this.apiUrlUsers, registerData, { headers });
   }
 }
