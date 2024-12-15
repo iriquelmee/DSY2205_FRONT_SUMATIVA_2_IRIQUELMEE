@@ -31,28 +31,32 @@ export class LoginComponent {
   loginForm!: FormGroup;
 
   submitForm() {
-    const {  email, password, password2 } = this.loginForm.value;
+    try {
+      
+      const { email, password } = this.loginForm.value;
+  
+      if (!email || !password) {
+        throw new Error('Todos los campos son obligatorios.');
+      }
 
-
-    const userData = {
-      email,
-      password,
-    };
-    console.log(userData);
-    alert("Componente en mantencion");
-
-    // falta agregar servicio de autenticacion - ignacio riquelme
-    // this.registerService.registerUser(userData).subscribe(
-    //   (response) => {
-    //     console.log('Registro exitoso', response);
-    //     alert('Registro exitoso: Usuario registrado.');
-    //     this.router.navigate(['/login']);
-    //   },
-    //   (error) => {
-    //     console.error('Error en el registro', error);
-    //   }
-    // );
+      const userData = { email, password };
+      this.registerService.authenticateUser(userData).subscribe(
+        (response) => {
+          console.log('Registro exitoso', response);
+          alert('Login Exitoso!, redireccionaaremos a la tienda...');
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          console.error('Error en login:', error);
+          alert('Hubo un error al autenticar al usuario. Por favor intente nuevamente.');
+        }
+      );
+    } catch (error: any) {
+      console.error('Erro:', error.message);
+      alert(error.message);
+    }
   }
+  
   
   //validanndo campos
   isFieldInvalid(campo: string): boolean {
