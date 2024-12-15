@@ -45,9 +45,7 @@ export class RegisterService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Type, Accept'
-    }); 
-    console.log("data", registerData);   
-    
+    });     
     return this.http.post(environment.apiUrlUsers+this.apiAuthEnpoint, registerData, { headers });
   }
 }
