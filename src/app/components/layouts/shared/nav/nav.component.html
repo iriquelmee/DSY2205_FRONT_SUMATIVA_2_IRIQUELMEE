@@ -1,9 +1,17 @@
 <div class="custom-slide-from-left">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <div class="col-4">
-            <a class="navbar-brand" href="#">{{navTitle}}</a>
-          </div>
+          @if(user !=undefined){
+            <div class="col-4">
+              <a class="navbar-brand" href="#">Usuario {{user.userMail}}</a>
+            </div>
+
+          } @else {
+            <div class="col-4">
+              <a class="navbar-brand" href="#">{{navTitle}}</a>
+            </div>
+
+          }
 
           <div class="col-4">
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -11,9 +19,25 @@
                 
                   @for(row of navLinks; track row.name)
                   {
-                    <li class="nav-item">
-                      <a class="nav-link" routerLink="{{row.href}}">{{row.name}}</a>
-                    </li>
+                    @if(user?.isAuthenticated && row.name === 'Login'){
+                      <li class="nav-item">
+                        <a class="nav-link" (click)="logout()">Logout</a>
+                      </li> 
+                    }
+                    @else if(user?.isAuthenticated && row.name === 'Registrate'){
+
+                    }
+                    @else if(!user?.isAuthenticated && row.name === 'Login'){
+                      <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                      </li> 
+                    }
+                    @else
+                    {
+                      <li class="nav-item">
+                        <a class="nav-link" routerLink="{{row.href}}">{{row.name}}</a>
+                      </li>
+                    }
                   }
               </ul>
             </div>

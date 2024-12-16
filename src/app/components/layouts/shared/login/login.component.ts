@@ -4,6 +4,7 @@ import { RegisterService } from '../../../../services/register.service';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { User } from '../../../../interfaces/user.model';
 
 @Component({
   selector: 'app-login',
@@ -43,8 +44,20 @@ export class LoginComponent {
       this.registerService.authenticateUser(userData).subscribe(
         (response) => {
           console.log('Registro exitoso', response);
+
+          const userToStore: User = {
+            isAuthenticated: response.isAuthenticated,
+            message: response.message,
+            userMail: response.userMail,
+            userFullName: response.userFullName,
+          };
+          localStorage.setItem('currentUser', JSON.stringify(userToStore));
+
           alert('Login Exitoso!, redireccionaaremos a la tienda...');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+          });
+          
         },
         (error) => {
           console.error('Error en login:', error);

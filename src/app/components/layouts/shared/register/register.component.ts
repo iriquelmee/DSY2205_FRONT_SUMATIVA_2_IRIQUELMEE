@@ -72,7 +72,9 @@ export class RegisterComponent {
       (response) => {
         console.log('Registro exitoso', response);
         alert('Registro exitoso: Usuario registrado.');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']).then(() => {
+          window.location.reload();
+        });
       },
       (error) => {
         console.error('Error en el registro', error);
